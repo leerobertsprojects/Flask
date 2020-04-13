@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templates</title>
+</head>
+<body>
+<!--    <h1>Welcome to my site</h1>-->
+<!--    <h2>Here Is a picture of a puppy</h2>-->
+<!--    <img src="../static/puppy_pic.jpg">-->
+    <h1>Hello {{name}}</h1>
+    <h1>{{letters}}</h1>
+    <h1>{{pup_dict['breed']}}</h1>
+    <ul>
+<!--        Flow Control         -->
+        {% for item in list1 %}
+        <li> {{item}}</li>
+        {% endfor %}
+    </ul>
+    {% if 'rufus' in list1 %}
+        <p>Found you rufus</p>
+    {% else %}
+        <p>Hmmm ... Cant find you rufus</p>
+    {% endif %}
+</body>
+</html>

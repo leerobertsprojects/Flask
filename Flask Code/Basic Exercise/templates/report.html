@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <p>Lets See how you performed</p>
+
+        {% if report %}
+            <p>You passed all the tests</p>
+        {% else %}
+            <ul>
+                {% if not num_end %}
+                    <li>You did not end with a number</li>
+                {% endif %}
+                {% if not upper_letter %}
+                    <li>You did not use an uppercase letter</li>
+                {% endif %}
+                {% if not lower_letter %}
+                    <li>You did not use a lowercase letter</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+
+    </div>
+
+{% endblock %}
