@@ -1,0 +1,13 @@
+
+
+<h1>Please fill in the form below</h1>
+{% if first and last %}
+    <p>Nice to meet you {{first}} {{last}}</p>
+{% else %}
+    <p>Please enter your name:</p>
+{% endif %}
+<form method="POST">
+    {{form.hidden_tag()}}
+    {{form.first.label}}{{form.first()}} {{form.last.label}}{{form.last()}}
+    {{form.submit()}}
+</form>
