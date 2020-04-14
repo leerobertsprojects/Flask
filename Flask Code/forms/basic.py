@@ -1,35 +1,46 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import (StringField, BooleanField, DateTimeField,
+                     RadioField, SelectField, TextField, TextAreaField, SubmitField)
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
-
-app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['SECRET_KEY'] = 'mykey'
 
 class InfoForm(FlaskForm):
-    # breed = StringField("<h2>What breed are you: </h2>")
-    first = StringField('First Name')
-    last = StringField('Last Name')
-    submit = SubmitField('Submit')
 
+    breed = StringField('What breed are you ', validators=[DataRequired()])
+    neutered = BooleanField('Has the puppy been neutered ')
+    mood = RadioField('Please choose your mood: ', choices=[('mood_one', 'Happy'), ('mood_two', 'Excited')])
+    food_choice = SelectField(u'Pick your favorite food: ', choices=[('chi', 'Chicken'), ('bf', 'Beef'), ('fish', 'Fish')])
+    feedback =TextAreaField()
+    submit = SubmitField('Submit')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # breed = False
+
     form = InfoForm()
-    first = False
-    last = False
     if form.validate_on_submit():
-        first = form.first.data
-        last = form.last.data
-        form.first.data = ''
-        form.last.data = ''
+        session['breed'] = form.breed.data
+        session['neutered'] = form.neutered.data
+        session['mood'] = form.mood.data
+        session['food'] = form.food_choice.data
+        session['feedback'] = form.feedback.data
 
-    # if form.validate_on_submit():
-    #     breed = form.breed.data
-    #     form.breed.data = ''
-    return render_template('index.html', form=form, first=first, last=last)
+        return redirect(url_for('thankyou'))
 
+    return render_template('index.html', form=form)
+
+@app.route('/Thankyou')
+def thankyou():
+    return render_template('thankyou.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
+
+

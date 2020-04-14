@@ -1,13 +1,20 @@
 
 
 <h1>Please fill in the form below</h1>
-{% if first and last %}
-    <p>Nice to meet you {{first}} {{last}}</p>
-{% else %}
-    <p>Please enter your name:</p>
-{% endif %}
-<form method="POST">
-    {{form.hidden_tag()}}
-    {{form.first.label}}{{form.first()}} {{form.last.label}}{{form.last()}}
-    {{form.submit()}}
-</form>
+<div class="jumbotron">
+    <form method="POST">
+     {{form.hidden_tag()}}
+     {{form.breed.label}} {{form.breed}}
+     <br>
+     {{form.neutered.label}}{{form.neutered}}
+     <br>
+     {{form.mood.label}} {{form.mood}}
+     <br>
+     {{form.food_choice.label}} {{form.food_choice}}
+     <br>
+     <h3>Please leave some feedback below</h3>
+        {{form.feedback}}
+     <br>
+        {{form.submit}}
+    </form>
+</div>
