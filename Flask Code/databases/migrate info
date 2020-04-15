@@ -1,0 +1,13 @@
+Use migrate to update a database table after changing the model for that table.
+
+set FLASK_APP environment variable
+export FLASK_APP='basic.py' # make sure you run it in the same directory as the file or put an absolute path
+then from flask_migrate import Migrate into your basic.py file # install using pip install flask-migrate
+create an instance of it
+Migrate(app,db)
+
+then from the terminal run
+flask db init # this will create a migrate folder
+flask db migrate -m 'Info Message'
+then
+flask db upgrade # to apply the changes you have made to the model to the database table
