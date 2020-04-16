@@ -12,11 +12,14 @@
   <div
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{{url_for('index')}}">Home</a>
-            <a class="nav-item nav-link" href="{{url_for('add_pup')}}">Add Puppy</a>
-            <a class="nav-item nav-link" href="{{url_for('del_pup')}}">Delete Puppy</a>
-            <a class="nav-item nav-link" href="{{url_for('list_pup')}}">List Puppies</a>
-            <a class="nav-item nav-link" href="{{url_for('owner')}}">Add Owner</a>
+            <a class="nav-item nav-link" href="{{url_for('home')}}">Home</a>
+            {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link" href="{{url_for('logout')}}">Logout</a>
+            {% else %}
+            <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+            <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
+            {% endif %}
+
         </div>
     </nav>
   </div>
