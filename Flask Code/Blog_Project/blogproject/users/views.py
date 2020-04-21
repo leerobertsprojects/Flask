@@ -32,7 +32,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user.check_password(form.password.data) and user is not None:
-            login()
+            login_user(user)
             flash('Log in success!', 'success')
             next = request.args.get('next')
             if next == None or not next[0] == '/':
@@ -60,8 +60,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
 
-    profile_image = url_for('static', filename='profile_pic/'+current_user.profile_image)
-    return render_template('account.html',profile_image=profile_image, form=form)
+    profile_image = url_for('static', filename='profile_pics/'+current_user.profile_image)
+    return render_template('account.html', profile_image=profile_image, form=form)
 
 
 @users.route('/<username>')
