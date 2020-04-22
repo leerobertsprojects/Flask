@@ -27,10 +27,12 @@ login_manager.login_view = 'users.login'
 from blogproject.core.views import core
 from blogproject.error_pages.handlers import error
 from blogproject.users.views import users
+from blogproject.blogposts.views import blog_posts
 
 app.register_blueprint(core)
 app.register_blueprint(error)
 app.register_blueprint(users)
+app.register_blueprint(blog_posts)
 
 
 
